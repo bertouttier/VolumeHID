@@ -30,8 +30,7 @@ const PROGMEM char usbHidReportDescriptor[25] = { /* USB report descriptor */
 
 usbMsgLen_t usbFunctionSetup(uchar data[8])
 {
-	usbRequest_t    *rq = (void *)data;
-
+	  usbRequest_t    *rq = (void *)data;
     usbMsgPtr = (usbMsgPtr_t)reportBuffer;
     if((rq->bmRequestType & USBRQ_TYPE_MASK) == USBRQ_TYPE_CLASS){    /* class request type */
         if(rq->bRequest == USBRQ_HID_GET_REPORT){  /* wValue: ReportType (highbyte), ReportID (lowbyte) */
