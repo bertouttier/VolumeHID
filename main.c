@@ -64,8 +64,9 @@ int main(void)
     if(calibrationValue != 0xff){
         OSCCAL = calibrationValue;
     }
-    ENC_InitEncoder();
-    usbInit();
+    ENC_InitEncoder();	// Initialize the Encoder
+    pirInit();			// Initialize the PIR sensor
+    usbInit();			// Initialize USB
     usbDeviceDisconnect();  
     uchar i = 0;
     while(--i){             

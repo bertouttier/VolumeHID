@@ -1,6 +1,6 @@
 #include "PIR.h"
 
-void Init_pir(void)
+void pirInit(void)
 {
 	pirState = 0;
 
@@ -21,14 +21,11 @@ void Init_pir(void)
 	|1		|1		|The rising edge of INT1 generates an interrupt request.	|
 	|-------|-------|-----------------------------------------------------------|
 	*/
-
-	sei(); // this actually globally enables the interrupts, GIMSK just turned them on
 }
 
-/*-------------------------------------------------------------------------------
- ------------INTRRUPT SERVICE ROUTINE (ISR) FOR INT1 -----------------------------
- When the INT1 interrupt is triggered by your momentary switch, the AVR jumps to this
- code no matter what its doing and in this case iterates the global counter value
+/*-----------INTRRUPT SERVICE ROUTINE (ISR) FOR INT1 -----------------------------
+ When the INT1 interrupt is triggered by your PIR sensor, the AVR jumps to this
+ code no matter what its doing and in this case enables pirState
  --------------------------------------------------------------------------------*/
 
 ISR(INT1_vect) // External Interrupt 0 ISR  Interrupt Service Routine

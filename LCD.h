@@ -33,16 +33,16 @@
 #define Data_Lcd(a)					DATA_PORT=a
 #define delay(a)					_delay_ms(a)
 
-volatile unsigned int counter; // set up counter as a global variable integer so it can be used in ISR and Main
-
 /*-----------------FUNCTIONS---------------------------------------
  Initialize functions that will be used later on
  -----------------------------------------------------------------*/
+void lcdInit(); // initializes port and LCD
 void Init_Ports(void); // function sets up the ports using the naming defined above
 void Init_Lcd(void); // function sets LCD into instruction mode and reads in all the preferences you have for the display
 void delay_ms(unsigned char time_ms); // define delay -- TEST IF THIS IS NEEDED
 void Lcd_Send(unsigned char a); // Function that actually pushes each letter into the LCD driver
-void itoa(); // initialize itoa, no really necessary, but it removed the warning I got upon compiling
+void Set_Cursor(unsigned char a);
+void Clear_LCD(void);
 void test(void); //test function (was main function)
 
 #endif  //lcd_h
