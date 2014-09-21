@@ -5,6 +5,7 @@
 #include <avr/pgmspace.h>   /* need for usbdrv.h */
 #include "usbdrv.h"
 #include "encoder.h"
+#include "LCD.h"
 #include <avr/eeprom.h>
 #include <avr/wdt.h>
 
@@ -71,6 +72,8 @@ int main(void)
 
     }
     
+    test(); // test the LCD
+
     usbDeviceConnect();     
     sei();                  
 	reportBuffer[0] = 1;  // ReportID = 1
