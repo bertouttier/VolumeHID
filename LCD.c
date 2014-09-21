@@ -38,22 +38,6 @@ void test(void) {
 
 	Init_Ports(); // Run the Init_Ports function to set up the avr for talking to the LCD
 
-//--------------------------------INTERRUPT SETUP--------------------------------------
-
-	PCMSK |= (1 << PIND2); // This tells the external interrupt which input we are looking at.
-
-	//todo: chango this config for INT0 to INT1
-	MCUCR = (1 << ISC01) | (0 << ISC00); // This gives the type of interrupt sense control (ISC01=1 ISC00=0) interrupts on the falling edge of the chang on INT1
-	// the other combinations are:
-	//(ISC01=0 ISC00=0) interrupts with a logical low on INT0
-	//(ISC01=1 ISC00=1) interrupts on the rising edge of the change on INT0
-	//(ISC01=0 ISC00=1) interrupts on the any logical change on INT0
-
-	GIMSK |= (1 << INT1); // general input mask - basically turns on interrupts, in this case INT1 is turned on
-
-	sei();
-	// this actually globally enables the interrupts, GIMSK just turned them on
-
 	//---------------------------------MAIN LOOP---------------------------------------------
 	while (1) // sets up a forever loop
 	{
@@ -204,10 +188,10 @@ void Init_Lcd(void) {
  code no matter what its doing and in this case iterates the global counter value
  --------------------------------------------------------------------------------*/
 
-ISR(INT1_vect) // External Interrupt 0 ISR  Interrupt Service Routine
-{
-	counter = counter + 1; //iterate counter up one  this can be changed to -/or* too, and the increment #
-						   //can change, but the "variable" size might need to be increased to accomodate more digits
-	delay(1); // put in a quick 1ms delay
-	// the ISR is complete - return to your regularly scheduled program
-}
+//ISR(INT1_vect) // External Interrupt 0 ISR  Interrupt Service Routine
+//{
+//	counter = counter + 1; //iterate counter up one  this can be changed to -/or* too, and the increment #
+//						   //can change, but the "variable" size might need to be increased to accomodate more digits
+//	delay(1); // put in a quick 1ms delay
+//	// the ISR is complete - return to your regularly scheduled program
+//}

@@ -6,6 +6,7 @@
 #include "usbdrv.h"
 #include "encoder.h"
 #include "LCD.h"
+#include "PIR.h"
 #include <avr/eeprom.h>
 #include <avr/wdt.h>
 
@@ -103,6 +104,12 @@ int main(void)
 	    if (Btnstate != 1) KeyPressed = 0xe2;	//Mute			
 		LastBtnstate = Btnstate;
 	  }	
+
+	  if(pirState == 1)
+	  {
+		  pirState = 0;
+		  KeyPressed = 0xe2; // todo: change this to another key
+	  }
         
 	  if(LastKeyPress != KeyPressed){
 		 if (usbInterruptIsReady()){
